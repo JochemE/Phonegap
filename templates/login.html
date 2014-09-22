@@ -1,0 +1,31 @@
+<div class="modal" ng-controller="LoginCtrl">
+  <ion-header-bar>
+    <h1 class="title">Login</h1>
+
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="login()">
+      <div class="list">
+        <div class="item item-divider">
+          Just tap the login button to simulate a successful login
+        </div>
+        <div>{{message}}</div>
+
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="user.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="user.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Login</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</div>
