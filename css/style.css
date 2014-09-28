@@ -1,1 +1,7 @@
-/* Empty. Add your own CSS if you like */
+ion-view {
+    left: 10px !important;
+}
+
+ion-nav-view {
+    background-color: #ffffff;
+}

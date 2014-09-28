@@ -5,15 +5,39 @@ angular.module('app.HolidayApprover', ['ionic',
   'app.services',
   'test.httpBackend'
   ])
-  .run(function($ionicPlatform, $rootScope, $httpBackend, $http) {
+  .run(function($ionicPlatform, $rootScope, $httpBackend, $http, $ionicLoading) {
+    console.log('app running...');
+
+    $rootScope.db = new PouchDB('HolidayApproverVersion2', function(err, info) {
+      if (err) { console.log('create db error:' +err) }
+      else { console.log('create db success: ' + info) }
+    });
+
     $ionicPlatform.ready(function() {
+      console.log('ionic ready!');
       if(window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       }
       if(window.StatusBar) {
         StatusBar.styleDefault();
       }
-  });
+
+      $rootScope.show = function (text) {
+        $rootScope.loading = $ionicLoading.show({
+          content: text ? text : 'Loading',
+          animation: 'fade-in',
+          showBackdrop: true,
+          maxWidth: 200,
+          showDelay: 0
+        });
+      };
+
+      $rootScope.hide = function () {
+        $ionicLoading.hide();
+      };
+
+      console.log('app ready!')
+    });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
